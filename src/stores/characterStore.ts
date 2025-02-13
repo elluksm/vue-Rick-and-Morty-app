@@ -21,8 +21,6 @@ export const useCharacterStore = defineStore('characterStore', () => {
       const response = await axios.get<CharactersApiResponse>(nextPageUrl.value)
       characters.value.push(...response.data.results)
 
-      console.log(response.data)
-
       // Update nextPageUrl with new "next" link (for next pages of data)
       nextPageUrl.value = response.data.info.next
     } catch (error) {

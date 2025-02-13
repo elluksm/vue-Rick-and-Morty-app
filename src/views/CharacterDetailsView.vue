@@ -21,8 +21,8 @@ const formatDate = (dateString) => {
 <template>
   <div class="p-16 md:p-20 lg:p-30">
     <div class="max-w-300 mx-auto">
-      <p v-if="characterStore.loading">Loading...</p>
-      <p v-else-if="characterStore.getCharacterError">
+      <div v-if="characterStore.loading" class="loading-spinner mx-auto"></div>
+      <p v-else-if="characterStore.getCharacterError" class="mb-4">
         Whoops! This character slipped into another dimension. Try reloading to bring them back!
       </p>
 
@@ -33,18 +33,18 @@ const formatDate = (dateString) => {
         <div class="sm:ml-6">
           <h1 class="text-xl leading-9 font-semibold text-gray-900">{{ character.name }}</h1>
           <div class="text-sm leading-5.5 font-light text-gray-500">
-            <p>Characted Id: {{ character.id }}</p>
-            <p>Species: {{ character.species }}</p>
-            <p>Status: {{ character.status }}</p>
-            <p>Gender: {{ character.gender }}</p>
-            <p>Origin: {{ character.origin.name }}</p>
-            <p>Location: {{ character.location.name }}</p>
-            <p>Created Date: {{ formatDate(character.created) }}</p>
+            <p>Characted Id: <span class="text-gray-900">{{ character.id }}</span></p>
+            <p>Species: <span class="text-gray-900">{{ character.species }}</span></p>
+            <p>Status: <span class="text-gray-900">{{ character.status }}</span></p>
+            <p>Gender: <span class="text-gray-900">{{ character.gender }}</span></p>
+            <p>Origin: <span class="text-gray-900">{{ character.origin.name }}</span></p>
+            <p>Location: <span class="text-gray-900">{{ character.location.name }}</span></p>
+            <p>Created Date: <span class="text-gray-900">{{ formatDate(character.created) }}</span></p>
           </div>
         </div>
       </div>
 
-      <RouterLink to="/" class="text-xl underline font-semibold">Back</RouterLink>
+      <RouterLink to="/" class="text-xl underline font-semibold text-gray-900 hover:text-gray-500">Back</RouterLink>
     </div>
   </div>
 </template>
