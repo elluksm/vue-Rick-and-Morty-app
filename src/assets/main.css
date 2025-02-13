@@ -7,6 +7,10 @@
 }
 
 a {
-  text-decoration: none;
   transition: 0.4s;
+}
+
+@theme {
+  --color-gray-500: #757575;
+  --color-gray-900: #282828;
 }
