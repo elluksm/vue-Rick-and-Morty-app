@@ -31,13 +31,13 @@ export const useCharacterStore = defineStore('characterStore', () => {
     }
   }
 
-  const getCharacterById = async (id: number) => {
+  const getCharacterById = async (id: number): Promise<Character | null> => {
     getCharacterError.value = false
-    let character = characters.value.find((c) => c.id == id)
+    let character = characters.value.find((c) => c.id == id) || null
     if (!character) {
       loading.value = true
       try {
-        const response = await axios.get(`${characterApiUrl}/${id}`)
+        const response = await axios.get<Character>(`${characterApiUrl}/${id}`)
         character = response.data
       } catch (err) {
         console.error('Error fetching character details:', err)

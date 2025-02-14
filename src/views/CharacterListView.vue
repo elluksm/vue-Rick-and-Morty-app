@@ -6,7 +6,7 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 const characterStore = useCharacterStore()
-const scrollContainer = ref(null)
+const scrollContainer = ref<HTMLElement | null>(null)
 
 onMounted(() => {
   // Fetch characters only when the component is mounted first time
@@ -22,12 +22,12 @@ onUnmounted(() => {
 
 const handleScroll = () => {
   const element = scrollContainer.value
-  if (element.getBoundingClientRect().bottom < window.innerHeight) {
+  if (element && element.getBoundingClientRect().bottom < window.innerHeight) {
     characterStore.fetchCharacters()
   }
 }
 
-const goToDetails = (id) => {
+const goToDetails = (id: number) => {
   router.push(`/character/${id}`)
 }
 </script>
@@ -37,7 +37,6 @@ const goToDetails = (id) => {
     <div class="max-w-300 mx-auto">
       <div
         ref="scrollContainer"
-        @scroll="onScroll"
         class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-6 gap-y-8"
       >
         <CharacterCard
@@ -55,6 +54,3 @@ const goToDetails = (id) => {
     </div>
   </main>
 </template>
-
-<style>
-</style>

@@ -6,13 +6,16 @@ import type { Character } from '@/types/Character'
 
 const route = useRoute()
 const characterStore = useCharacterStore()
-const character = ref<Character>(null)
+const character = ref<Character | null>(null)
 
 onMounted(async () => {
-  character.value = await characterStore.getCharacterById(route.params.id)
+  const characterId = Number(route.params.id)
+  if (characterId) {
+    character.value = await characterStore.getCharacterById(characterId)
+  }
 })
 
-const formatDate = (dateString) => {
+const formatDate = (dateString: string) => {
   if (!dateString) return 'Unknown'
   return new Date(dateString).toISOString().split('T')[0]
 }
